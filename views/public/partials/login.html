@@ -1,0 +1,38 @@
+<section class="content-header">
+  <ol class="breadcrumb" style="float:right; margin-top:10px; margin-right:4%;">
+	<li><a ui-sref="/"><i class="fa fa-dashboard"></i> Home</a></li>
+	<li class="active">Login</li>
+  </ol>
+</section>	
+<!-- banner-bottom -->
+	<div class="banner-bottom">
+		<!-- container -->
+		<div class="container">
+			<div class="faqs-top-grids">
+				<div class="book-grids">
+					<div class="col-md-8" >
+						<div class="book-left-info">
+							<h3>Login</h3>
+						</div>
+						<div class="book-left-form" >
+							<form ng-controller="loginCtrl" name="myform">
+								<p style="color:red">{{response}}</p>
+								<p>Email</p>
+								<span class="error" ng-show="myform.email.$error.pattern ">* invalid email</span>
+								<span class="error" ng-show="myform.email.$error.required && myform.email.$dirty" >* Required</span>										
+								<input type="text" name="email"ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-model="email" required>
+								<p>Password</p>
+							    <span class="error" ng-show="myform.password.$error.required && myform.password.$dirty">* Required</span>
+								<input type="password" name="password" id="password" ng-model="password"required>
+								<input type="submit" id="login" value="Login" ng-click="login()" ng-disabled="!myform.$valid">
+							</form>
+						</div>
+					</div>
+					
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+		<!-- //container -->
+	</div>
+	<!-- //banner-bottom -->

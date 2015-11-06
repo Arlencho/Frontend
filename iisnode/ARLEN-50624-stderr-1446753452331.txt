@@ -1,0 +1,9 @@
+Application has thrown an uncaught exception and is terminated:
+Error: listen EADDRINUSE 127.0.0.1:3000
+    at Object.exports._errnoException (util.js:860:11)
+    at exports._exceptionWithHostPort (util.js:883:20)
+    at Server._listen2 (net.js:1234:14)
+    at listen (net.js:1270:10)
+    at net.js:1379:9
+    at GetAddrInfoReqWrap.asyncCallback [as callback] (dns.js:63:16)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:82:10)

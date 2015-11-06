@@ -1,0 +1,49 @@
+<section class="content-header">
+  <ol class="breadcrumb" style="float:right; margin-top:10px; margin-right:4%;">
+	<li><a ui-sref="/"><i class="fa fa-dashboard"></i> Home</a></li>
+	<li class="active">Register</li>
+  </ol>
+</section>	
+	<!-- banner-bottom -->
+	<div class="banner-bottom">
+		<!-- container -->
+		<div class="container">
+			<div class="faqs-top-grids">
+				<div class="book-grids">
+					<div class="col-md-8 ">
+						<div class="book-left-info">
+							<h3>Register a new account</h3>
+						</div>
+						<div class="book-left-form">
+							<form name="myform">
+								<p>First Name</p>
+								<span class="error" ng-show="myform.firstName.$error.pattern ">* invalid</span>
+								<span class="error" ng-show="myform.firstName.$error.required && myform.firstName.$dirty" >* Required</span>
+								<input type="text" name="firstName" ng-pattern ="/^[a-zA-Z\s]*$/" ng-model="firstName" required>
+								<p>Last Name</p>
+								<span class="error" ng-show="myform.lastName.$error.pattern ">* invalid</span>
+								<span class="error" ng-show="myform.lastName.$error.required && myform.lastName.$dirty" >* Required</span>
+								<input type="text" name="lastName" ng-model="lastName" required>
+								<p>Phone Number</p>
+								<span class="error" ng-show="myform.phone.$error.pattern">* invalid phone</span>
+								<input type="text" name="phone" ng-pattern="/^[0-9]{10,10}$/" ng-model="phone">
+								<p>Email Address</p>
+								<span class="error" ng-show="myform.email.$error.pattern ">* invalid email</span>
+								<span class="error" ng-show="myform.email.$error.required && myform.email.$dirty" >* Required</span>										
+								<input type="text" name="email"ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-model="email" required>
+								<p>Password</p>
+							   <span class="error" ng-show="myform.password.$error.required && myform.password.$dirty">required</span>
+							   <span class="error" ng-show="!myform.password.$error.required && (myform.password.$error.minlength || myform.password.$error.maxlength) && myform.password.$dirty">Passwords must be between 8 and 20 characters.</span>
+							   <span class="error" ng-show="!myform.password.$error.required && !myform.password.$error.minlength && !myform.password.$error.maxlength && myform.password.$error.pattern && myform.password.$dirty">Must contain lower & uppercase letter & a non-alpha </span>								
+							   <input type="password" id="password" name="password" ng-model="password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required  />
+								<input type="submit" id="login" value="Register Now" ng-click="register_now()" ng-disabled="!myform.$valid" >
+							</form>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+		<!-- //container -->
+	</div>
+	<!-- //banner-bottom -->

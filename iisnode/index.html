@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"ARLEN-10216-stderr-1446735797260.txt","computername":"ARLEN","pid":10216,"type":"stderr","created":1446735797260},{"file":"ARLEN-10216-stdout-1446735797259.txt","computername":"ARLEN","pid":10216,"type":"stdout","created":1446735797259},{"file":"ARLEN-22572-stderr-1446736515473.txt","computername":"ARLEN","pid":22572,"type":"stderr","created":1446736515473},{"file":"ARLEN-22572-stdout-1446736515470.txt","computername":"ARLEN","pid":22572,"type":"stdout","created":1446736515470},{"file":"ARLEN-22704-stderr-1446736513093.txt","computername":"ARLEN","pid":22704,"type":"stderr","created":1446736513093},{"file":"ARLEN-22704-stdout-1446736513093.txt","computername":"ARLEN","pid":22704,"type":"stdout","created":1446736513093},{"file":"ARLEN-47428-stderr-1446735798254.txt","computername":"ARLEN","pid":47428,"type":"stderr","created":1446735798254},{"file":"ARLEN-47428-stdout-1446735798252.txt","computername":"ARLEN","pid":47428,"type":"stdout","created":1446735798252},{"file":"ARLEN-49696-stderr-1446753451134.txt","computername":"ARLEN","pid":49696,"type":"stderr","created":1446753451134},{"file":"ARLEN-49696-stdout-1446753451133.txt","computername":"ARLEN","pid":49696,"type":"stdout","created":1446753451133},{"file":"ARLEN-50624-stderr-1446753452331.txt","computername":"ARLEN","pid":50624,"type":"stderr","created":1446753452331},{"file":"ARLEN-50624-stdout-1446753452329.txt","computername":"ARLEN","pid":50624,"type":"stdout","created":1446753452329},{"file":"ARLEN-50732-stderr-1446802404942.txt","computername":"ARLEN","pid":50732,"type":"stderr","created":1446802404942},{"file":"ARLEN-50732-stdout-1446802404941.txt","computername":"ARLEN","pid":50732,"type":"stdout","created":1446802404941}];
+        var lastUpdated = 1446802405394;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>

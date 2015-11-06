@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html ng-app="login">
+<head>
+<title>Login Popup</title>
+<link href="_assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="_assets/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="_assets/css/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="../_assets/css/StyleSheetKalle.css" rel="stylesheet" />
+
+
+<script src="_assets/lib/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
+<script src="_assets/lib/menu_jquery.js"></script>
+<script src="_assets/lib/ScriptKalle.js"></script>
+
+</head>
+<body>
+	<!--header-->
+	<div class="header">
+		<div class="container">
+			<div class="nav-top">
+				<div class="top-nav">
+					<ul class="nav1">
+						<li ui-sref-active="active"><a ui-sref="/">Home</a></li>
+						<li ui-sref-active="active"><a ui-sref="register_new">Register</a></li>
+					</ul>
+						<!-- script-for-menu -->
+							 <script> 
+							   $( "span.menu" ).click(function() {
+								 $( "ul.nav1" ).slideToggle( 300, function() {
+								 // Animation complete.
+								  });
+								 });
+							
+							</script>
+						<!-- /script-for-menu -->
+					<div class="clearfix"> </div>
+				</div>
+				<div class="dropdown-grids">
+							<div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
+							<div id="loginBox" ng-controller="loginCtrl">                
+								<form id="loginForm">
+									<div class="login-grids">
+										<div class="login-grid-left">
+										<p style="color:red">{{response}}</p>
+											<fieldset id="body">
+												<fieldset>
+													<label for="email">Email Address</label>
+													<input type="text" name="email" id="email" ng-model="email">
+												</fieldset>
+												<fieldset>
+													<label for="password">Password</label>
+													<input type="password" name="password" id="password" ng-model="password">
+												</fieldset>
+												<input type="submit" id="login" value="Login" ng-click="login()"><br />
+												
+												<a ui-sref="register_new"><i>Register a new user here!!</i></a>
+											</fieldset>
+											
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--//header-->
+    <ul class="navbar">
+        <li class="navbar-li" id="weather"><a href="#">Weather</a></li>
+        <li class="navbar-li" id="clocklink"><a href="#">Time</a></li>
+        <li class="navbar-li" id="login"><a href="#">Log in</a></li>
+        <li class="navbar-li" id="table"><a href="#">Datatable</a></li>
+    </ul>
+
+    <div class="mobile-menu">
+        <div class="trigger">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+            <div class="line-2-1"></div>
+            <div class="line-3"></div>
+        </div>
+
+        <ul class="mobile-navbar">
+            <li class="mobile-navbar-li" id="weather" style="background-color: #ffe01a;"><a href="#">Väder</a></li>
+            <li class="mobile-navbar-li" id="clocklink" style="background-color: #ef3e42;"><a href="#">Klocka</a></li>
+            <li class="mobile-navbar-li" id="login" style="background-color: #007ac2;"><a href="#">Logga in</a></li>
+            <li class="mobile-navbar-li" id="table" style="background-color: #d0ad67;"><a href="#">Datatable</a></li>
+        </ul>
+    </div>
+    </br>
+    <div id="time">
+        <canvas id="clock"></canvas>
+        <h1 id="city-stockholm">Stockholm</h1>
+    </div>  
+	<!--Partial Area-->
+	<div ui-view class="container"></div>
+	<!--//Partial Area-->
+	
+	
+	<!-- AngularJS libraries -->
+		<script src="_assets/lib/angular.min.js" type="text/javascript"></script>
+		<script src="_assets/lib/angular-ui-router.min.js" type="text/javascript" ></script>
+		<script src="_assets/lib/angular-resource.min.js" type="text/javascript" ></script>
+		<!-- AngularJS Routing -->
+		<script src="public/js/route.js"></script>
+		<!-- AngularJS Controllers -->
+		<script src="public/js/controllers/defaultCtrl.js"></script>
+    
+         <script src="public/js/controllers/WeatherApp.js"></script>
+        <script src="public/js/controllers/angular-table.min.js"></script>
+        <script src="public/js/controllers/OscarJS.js"></script>
+		<!-- AngularJS Services -->
+		<script src="public/js/services/defaultSvc.js"></script>
+		<script src="public/js/services/loginSvc.js"></script>
+		<script src="_assets/lib/socket.io-1.2.0.js"></script>
+
+</body>
+</html>

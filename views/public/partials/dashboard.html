@@ -1,0 +1,34 @@
+<!-- banner-bottom -->
+<div class="banner-bottom">
+    <!-- container -->
+    <div class="container">
+        <div class="faqs-top-grids">
+            <div ng-controller="dataTableController as dtc">
+
+                <weatherapp></weatherapp>
+                <input class="form form-control" type="text" placeholder="SearchBox" ng-model="searchValue" ng-change="searchValueChanged()" />
+                <table class="table table-striped" at-table at-paginated at-list="names.items" at-config="config">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td at-implicit at-sortable at-attribute="id" at-initial-sorting="asc"></td>
+                            <td at-implicit at-sortable at-attribute="label"></td>
+                            <td at-implicit at-sortable at-attribute="age"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <at-pagination style="float: left;" at-list="names.items" at-config="config"></at-pagination>
+
+                <input id="pageIndexSetter" type="text" class="form-control"
+                       style="width: 100px; margin: 20px; float: left;"
+                       placeholder="No Of Items / Page" ng-model="config.itemsPerPage">
+            </div>
+
+        </div>
+    </div>
+    <!-- //container -->
+</div>
+<!-- //banner-bottom -->
