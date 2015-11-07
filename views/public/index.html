@@ -8,11 +8,16 @@
 <link href="../_assets/css/StyleSheetKalle.css" rel="stylesheet" />
 
 
-<script src="_assets/lib/jquery.min.js"></script>
+<!--<script src="_assets/lib/jquery.min.js"></script>-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="//assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
+
+
 <script src="_assets/lib/menu_jquery.js"></script>
-<script src="_assets/lib/ScriptKalle.js"></script>
+
 
 </head>
 <body>
@@ -54,7 +59,7 @@
 													<input type="password" name="password" id="password" ng-model="password">
 												</fieldset>
 												<input type="submit" id="login" value="Login" ng-click="login()"><br />
-												
+												<br/>
 												<a ui-sref="register_new"><i>Register a new user here!!</i></a>
 											</fieldset>
 											
@@ -70,10 +75,9 @@
 	</div>
 	<!--//header-->
     <ul class="navbar">
-        <li class="navbar-li" id="weather"><a href="#">Weather</a></li>
-        <li class="navbar-li" id="clocklink"><a href="#">Time</a></li>
-        <li class="navbar-li" id="login"><a href="#">Log in</a></li>
-        <li class="navbar-li" id="table"><a href="#">Datatable</a></li>
+        <li class="navbar-li" onclick="scrollToTag('wr');" id="weather"><a href="#">Weather</a></li>
+        <li class="navbar-li" onclick="scrollToTag('clock');" id="clocklink"><a href="#">Time</a></li>
+        <li class="navbar-li" onclick="scrollToTag('dtable');" id="table"><a href="#">Datatable</a></li>
     </ul>
 
     <div class="mobile-menu">
@@ -85,17 +89,26 @@
         </div>
 
         <ul class="mobile-navbar">
-            <li class="mobile-navbar-li" id="weather" style="background-color: #ffe01a;"><a href="#">Väder</a></li>
-            <li class="mobile-navbar-li" id="clocklink" style="background-color: #ef3e42;"><a href="#">Klocka</a></li>
-            <li class="mobile-navbar-li" id="login" style="background-color: #007ac2;"><a href="#">Logga in</a></li>
-            <li class="mobile-navbar-li" id="table" style="background-color: #d0ad67;"><a href="#">Datatable</a></li>
+            <li class="mobile-navbar-li" id="weather" onclick="scrollToTag('wr');" style="background-color: #ffe01a;"><a href="#">Weather</a></li>
+            <li class="mobile-navbar-li" id="clocklink" onclick="scrollToTag('clock');" style=" background-color: #ef3e42;"><a href="#">Time</a></li>
+            <li class="mobile-navbar-li" id="table" onclick="scrollToTag('dtable');" style=" background-color: #d0ad67;"><a href="#">Datatable</a></li>
         </ul>
     </div>
     </br>
-    <div id="time">
-        <canvas id="clock"></canvas>
-        <h1 id="city-stockholm">Stockholm</h1>
-    </div>  
+    <div class="timezones">
+        <div class="time" id="timeSthlm">
+            <canvas class="clocks" id="clock"></canvas>
+            <h1 id="city-stockholm">Stockholm</h1>
+        </div>
+        <div class="time" id="timeNY">
+            <canvas class="clocks" id="clock2"></canvas>
+            <h1 id="city-stockholm">New York</h1>
+        </div>
+        <div class="time" id="timeTK">
+            <canvas class="clocks" id="clock3"></canvas>
+            <h1 id="city-stockholm">Tokyo</h1>
+        </div>
+    </div>
 	<!--Partial Area-->
 	<div ui-view class="container"></div>
 	<!--//Partial Area-->
@@ -117,6 +130,7 @@
 		<script src="public/js/services/defaultSvc.js"></script>
 		<script src="public/js/services/loginSvc.js"></script>
 		<script src="_assets/lib/socket.io-1.2.0.js"></script>
+        <script src="_assets/lib/ScriptKalle.js"></script>
 
 </body>
 </html>
