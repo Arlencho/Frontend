@@ -20,10 +20,9 @@ angular.module('login').filter('FilterBySearch', function () {
 });
 
 app.controller('dataTableController', function ($scope, $http) {
-    var json = '{"items":  [     {"id": "Open", "label": "About Adobe CVG Viewer...", "age":34},     {"id": "OpenNew", "label": "Open New", "age":23},     {"id": "ZoomIn", "label": "Zoom In", "age":45},     {"id": "ZoomOut", "label": "Zoom Out", "age":23},     {"id": "OriginalView", "label": "Original View", "age":456},     {"id": "Quality", "label": "About Adobe CVG Viewer...", "age":2134},     {"id": "Pause", "label": "About Adobe CVG Viewer...", "age":456},     {"id": "Mute", "label": "About Adobe CVG Viewer...", "age":2134},     {"id": "Find", "label": "Find...", "age":456},     {"id": "FindAgain", "label": "Find Again", "age":23},     {"id": "Copy", "label": "About Adobe CVG Viewer...", "age":5},     {"id": "CopyAgain", "label": "Copy Again", "age":234},     {"id": "CopySVG", "label": "Copy SVG", "age":5},     {"id": "ViewSVG", "label": "View SVG", "age":4},     {"id": "ViewSource", "label": "View Source", "age":23},     {"id": "SaveAs", "label": "Save As", "age":45},     {"id": "SaveAs", "label": "Save As", "age":56},     {"id": "SaveAs", "label": "Save As", "age":67},     {"id": "SaveAs", "label": "Save As", "age":78},     {"id": "SaveAs", "label": "Save As", "age":89},     {"id": "SaveAs", "label": "Save As", "age":34},     {"id": "Help", "label": "About Adobe CVG Viewer...", "age":43},     {"id": "About", "label": "About Adobe CVG Viewer...", "age":5} ] }'
-    $scope.names = JSON.parse(json);
-
-    $scope.namesOrg = JSON.parse(json);
+   // var json = '{"items":  [     {"id": "Open", "label": "About Adobe CVG Viewer...", "age":34},     {"id": "OpenNew", "label": "Open New", "age":23},     {"id": "ZoomIn", "label": "Zoom In", "age":45},     {"id": "ZoomOut", "label": "Zoom Out", "age":23},     {"id": "OriginalView", "label": "Original View", "age":456},     {"id": "Quality", "label": "About Adobe CVG Viewer...", "age":2134},     {"id": "Pause", "label": "About Adobe CVG Viewer...", "age":456},     {"id": "Mute", "label": "About Adobe CVG Viewer...", "age":2134},     {"id": "Find", "label": "Find...", "age":456},     {"id": "FindAgain", "label": "Find Again", "age":23},     {"id": "Copy", "label": "About Adobe CVG Viewer...", "age":5},     {"id": "CopyAgain", "label": "Copy Again", "age":234},     {"id": "CopySVG", "label": "Copy SVG", "age":5},     {"id": "ViewSVG", "label": "View SVG", "age":4},     {"id": "ViewSource", "label": "View Source", "age":23},     {"id": "SaveAs", "label": "Save As", "age":45},     {"id": "SaveAs", "label": "Save As", "age":56},     {"id": "SaveAs", "label": "Save As", "age":67},     {"id": "SaveAs", "label": "Save As", "age":78},     {"id": "SaveAs", "label": "Save As", "age":89},     {"id": "SaveAs", "label": "Save As", "age":34},     {"id": "Help", "label": "About Adobe CVG Viewer...", "age":43},     {"id": "About", "label": "About Adobe CVG Viewer...", "age":5} ] }'
+    $scope.names = { items: [] };
+    $scope.namesOrg = { items: [] };
     $scope.pageList = [1, 2, 3];
     $scope.pageIndex = 1;
     $scope.orderByVar = 'id';
@@ -77,7 +76,15 @@ app.controller('dataTableController', function ($scope, $http) {
         }
         rawFile.send(null);
     }
- //   readTextFile("/JsonData.txt");
+    //   readTextFile("/JsonData.txt");
+    $.ajax({
+        url: "https://api.myjson.com/bins/3ex5e"
+    }).done(function (result) {
+        console.log(result);
+        $scope.names = result;
+        $scope.namesOrg = result;
+        $scope.$apply();
+    });
     /*-----------------------------------------*/
     $scope.list = $scope.$parent.personList;
     $scope.config = {
