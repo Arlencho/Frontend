@@ -205,9 +205,10 @@ angular.module('login')
         return {
             restrict: 'E',
             template: '<div ng-controller="WeatherAppController as weatherApp" class="row">                                                                             ' +
+
  '   <div style="background: yellow; border-radius: 10px;" class="col-lg-6 col-md-12 col-sm-12 col-xs-12">                                                              ' +
  '       <div class="row">                                                                                                                                              ' +
- '           <div class="col-lg-8 col-md-6 col-xs-6">                                                                                                                   ' +
+ '           <div class="col-lg-8 col-md-6 col-xs-6" style="min-width:300px;">                                                                                                                   ' +
  '               <div style="padding: 20px;">                                                                                                                           ' +
  '                   <h1>{{weatherApp.returninfo.name}}, {{weatherApp.returninfo.sys.country}}</h1>                                                                     ' +
  '                   <p>{{weatherApp.returninfo.main.temp}} &ordm;C</p>                                                                                                 ' +
@@ -215,7 +216,7 @@ angular.module('login')
  '                   <p class="hidden-sm hidden-xs">Information compilation time: {{weatherApp.formattedtimeinfo}}</p>                                                  ' +
  '               </div>                                                                                                                                                 ' +
  '           </div>                                                                                                                                                     ' +
- '           <img class="col-lg-4 col-sm-6 col-xs-6" src="{{weatherApp.imageLink}}" title="{{weatherApp.returninfo.weather[0].description}}" />                         ' +
+ '           <img class="col-lg-4 col-sm-6 col-xs-6" style="min-width:100px;" src="{{weatherApp.imageLink}}" title="{{weatherApp.returninfo.weather[0].description}}" />                         ' +
  '                                                                                                                                                                      ' +
  '       </div>                                                                                                                                                         ' +
  '   </div>                                                                                                                                                             ' +

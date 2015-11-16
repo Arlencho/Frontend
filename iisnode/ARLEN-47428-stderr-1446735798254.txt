@@ -1,8 +1,0 @@
-Application has thrown an uncaught exception and is terminated:
-Error: Encountered an unexpected error:
-Error: Could not connect to MySQL:
-Error: ER_BAD_DB_ERROR: Unknown database 'logindb'
-    at process.<anonymous> (C:\Program Files (x86)\iisnode-dev\release\x86\interceptor.js:201:110)
-    at emitOne (events.js:77:13)
-    at process.emit (events.js:169:7)
-    at process._fatalException (node.js:232:26)

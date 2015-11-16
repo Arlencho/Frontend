@@ -46,6 +46,7 @@ function scrollToTag(tag) { document.getElementById(tag).scrollIntoView(true); c
             return;
         }
 
+
         Clock.prototype.animate = function () {
             var radians, time;
             this.$context[0].height = this.canvasHeight;
@@ -58,6 +59,7 @@ function scrollToTag(tag) { document.getElementById(tag).scrollIntoView(true); c
             this.drawCircle(88, 10, radians.secondRad, false);
             this.drawCircle(106, 10, radians.minutesRad, false);
             this.drawCircle(124, 10, radians.hoursRad, false);
+            this.drawCircle(142, 10, radians.dayRad, false);
             this.printTime(time);
             return this.raf = requestAnimationFrame(this.animate);
         };
@@ -82,6 +84,11 @@ function scrollToTag(tag) { document.getElementById(tag).scrollIntoView(true); c
         //new york gmt-5
         // tokyo gmt+9
 
+        Date.prototype.getDOY = function () {
+            var onejan = new Date(this.getFullYear(), 0, 1);
+            return Math.ceil((this - onejan) / 86400000);
+        }
+
         Clock.prototype.getTimeObj = function (tz) {
             var date, time;
             date = new Date();
@@ -89,21 +96,24 @@ function scrollToTag(tag) { document.getElementById(tag).scrollIntoView(true); c
                 milliseconds: date.getMilliseconds(),
                 seconds: date.getSeconds(),
                 minutes: date.getMinutes(),
-                hours: date.getHours()
+                hours: date.getHours(),
+                days: date.getDOY()
             };
 
             timeNewYork = {
                 milliseconds: date.getMilliseconds(),
                 seconds: date.getSeconds(),
                 minutes: date.getMinutes(),
-                hours: date.getHours() - 5
+                hours: date.getHours() - 5,
+                days: date.getDOY()
             };
 
             timeTokyo = {
                 milliseconds: date.getMilliseconds(),
                 seconds: date.getSeconds(),
                 minutes: date.getMinutes(),
-                hours: date.getHours() + 9
+                hours: date.getHours() + 9,
+                days: date.getDOY()
             };
 
             switch (tz) {
@@ -121,13 +131,15 @@ function scrollToTag(tag) { document.getElementById(tag).scrollIntoView(true); c
         };
 
         Clock.prototype.getRadians = function (time) {
-            var hours, hoursDegrees, hoursRadians, milliDegrees, milliRadians, secondDegrees, secondRadians, minutesDegrees, minutesRadians, ref;
+            var hours, hoursDegrees, hoursRadians, milliDegrees, milliRadians, secondDegrees, secondRadians, minutesDegrees, minutesRadians, dayDegrees, dayRadian, ref;
             milliDegrees = this.map(time.milliseconds, 0, 1000, 0, 360);
             milliRadians = (milliDegrees * Math.PI) / 180;
             secondDegrees = this.map(time.seconds, 0, 60, 0, 360);
             secondRadians = (secondDegrees * Math.PI) / 180;
             minutesDegrees = this.map(time.minutes, 0, 60, 0, 360);
             minutesRadians = (minutesDegrees * Math.PI) / 180;
+            dayDegrees = this.map(time.days, 1, 365, 0, 360);
+            dayRadian = (dayDegrees * Math.PI) / 180;
             hours = time.hours;
             if (hours > 12) {
                 hours -= 12;
@@ -149,20 +161,25 @@ function scrollToTag(tag) { document.getElementById(tag).scrollIntoView(true); c
                 minutesRad: minutesRadians,
                 minutesDeg: minutesDegrees,
                 hoursRad: hoursRadians,
-                hoursDeg: hoursDegrees
+                hoursDeg: hoursDegrees,
+                dayRad: dayRadian,
+                dayDeg: dayDegrees
             };
         };
 
         Clock.prototype.printTime = function (time) {
-            var hours, minutes, seconds, textWidth, timeStr;
+            var hours, minutes, seconds, textWidth, timeStr, daysLeft, date, year;
+            date = new Date();
+            year = 366;
             hours = time.hours < 10 ? "0" + time.hours : time.hours;
             minutes = time.minutes < 10 ? "0" + time.minutes : time.minutes;
             seconds = time.seconds < 10 ? "0" + time.seconds : time.seconds;
             timeStr = hours + " " + minutes + " " + seconds;
+            daysLeft = year - date.getDOY();
             this.ctx.fillStyle = "#ffffff";
             this.ctx.font = "14px Verdana";
-            textWidth = this.ctx.measureText(timeStr);
-            return this.ctx.fillText(timeStr, this.centerX - textWidth.width / 2, this.centerY + 7);
+            textWidth = this.ctx.measureText(timeStr + ", " + daysLeft);
+            return this.ctx.fillText(timeStr + ", " + daysLeft, this.centerX - textWidth.width / 2, this.centerY + 7);
         };
 
         Clock.prototype.map = function (value, low1, high1, low2, high2) {
